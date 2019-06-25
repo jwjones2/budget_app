@@ -10,8 +10,23 @@ class BudgetList(APIView):
     List all the budgets.
     """
     renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'tem.html'
+    template_name = 'budgets/list.html'
 
     def get(self, request):
         queryset = Budget.objects.all()
-        return Response({'budgets', queryset})
+        return Response({
+            'budgets': queryset
+        })
+
+class BudgetCreate(APIView):
+    """
+    Create a new budget.
+    """
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'budgets/new.html'
+
+    def get(self, request):
+        types = Budget.budget_types
+        return Response({
+            'types': types
+        })

@@ -4,6 +4,7 @@ from budgets import views
 
 urlpatterns = [
     path('budgets/', views.BudgetList.as_view()),
+    path('budget/', views.BudgetCreate.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
