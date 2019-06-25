@@ -10,7 +10,7 @@ class BudgetList(APIView):
     List all the budgets.
     """
     renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'index.html'
+    template_name = 'tem.html'
 
     def get(self, request):
         queryset = Budget.objects.all()
