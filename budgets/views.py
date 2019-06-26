@@ -1,7 +1,9 @@
 from budgets.models import Budget
 from budgets.serializers import BudgetSerializer
 from django.http import Http404
+from django.shortcuts import redirect
 from rest_framework.views import APIView
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.renderers import TemplateHTMLRenderer
 
@@ -30,3 +32,10 @@ class BudgetCreate(APIView):
         return Response({
             'types': types
         })
+
+    def post(self, request):
+        serializer = BudgetSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return redirect('/budgets') #Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

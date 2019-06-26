@@ -1,10 +1,11 @@
 {% extends "index.html" %}
 
 {% block main %}
-<form>
+<form method="post" action="/budget/">
+{% csrf_token %}
   <div class="form-group">
     <label for="inputName">Name</label>
-    <input type="email" class="form-control" name="name" id="inputName" aria-describedby="nameHelp" placeholder="Enter the budget name.">
+    <input type="text" class="form-control" name="name" id="inputName" aria-describedby="nameHelp" placeholder="Enter the budget name.">
   </div>
   <div class="form-group">
     <label for="inputDescription">Description</label>
